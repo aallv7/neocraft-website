@@ -16,3 +16,24 @@ function scrollToSection(id) {
         });
     }
 }
+
+function openJoinPopup() {
+    document.getElementById("join-popup").classList.add("show");
+}
+
+function closeJoinPopup() {
+    document.getElementById("join-popup").classList.remove("show");
+}
+
+function copyToClipboard() {
+    const ipText = document.getElementById("server-ip").innerText;
+    navigator.clipboard.writeText(ipText).then(() => {
+        alert("Server IP copied: " + ipText);
+    }).catch(err => {
+        console.error("Failed to copy IP:", err);
+    });
+}
+
+function toggleMenu() {
+    document.querySelector(".nav-links").classList.toggle("active");
+}
