@@ -27,7 +27,7 @@ html, body {
     position: relative;
     top: 2%;
     left: 50%;
-    width: 70%;
+    width: 90%;
     bottom: 2%;
 }
 
@@ -78,6 +78,7 @@ nav {
     width: 100%;
     background: #333;
     padding: 10px 0;
+    color: white;
     position: fixed;
     top: 0;
     left: 0;
@@ -106,9 +107,16 @@ nav {
 
 .web-title {
     color: white;
+    text-decoration: none;
     font-size: 20px;
     font-weight: bold;
     margin-left: 10px;
+    transition: color 0.3s ease;
+}
+
+.web-title:hover {
+    color: #76b8ff; /* Light blue color on hover */
+    cursor: pointer;
 }
 
 /* Navigation Hover Effect */
@@ -134,11 +142,17 @@ nav {
 
 .nav-links a:hover {
     color: #76b8ff; /* Light blue color on hover */
+    cursor: pointer;
 }
 
 .nav-links a:hover::after {
     width: 100%;
     left: 0;
+}
+
+.hamburger-menu {
+    cursor: pointer;
+    display: none;
 }
 
 /* Home Section */
@@ -191,8 +205,13 @@ nav {
     margin-top: 5%;
 }
 
+#play h1 {
+    padding-bottom: 10px;
+}
+
 .play-info {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     gap: 5%;
 }
@@ -201,7 +220,7 @@ nav {
     background: #636363;
     padding: 20px;
     border-radius: 10px;
-    width: 50%;
+    width: fit-content;
     font-size: 75%;
 }
 
@@ -225,14 +244,14 @@ nav {
 
 /* Footer */
 footer {
-    bottom: 1.5%;
+    bottom: 0;
     background-color: #222;
     color: #fff;
     text-align: center;
     padding: 15px;
     width: 100%;
     border-top: 2px solid #fab6f8;
-    position: relative;
+    position: fixed;
 }
 
 .footer-container {
@@ -252,6 +271,7 @@ footer {
     background: rgba(0, 0, 0, 0.9);
     padding: 20px;
     border-radius: 10px;
+    border: 2px solid #fab6f8;
     color: white;
     text-align: center;
     z-index: 1001;
@@ -270,7 +290,6 @@ footer {
     margin-top: 10px;
     padding: 10px;
     background: #76b8ff;
-    border: none;
     color: white;
     cursor: pointer;
     border-radius: 5px;
@@ -349,5 +368,12 @@ footer {
 
     .hamburger-menu {
         display: block;
+    }
+
+    .play-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 5%;
     }
 }

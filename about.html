@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | NeoCraft</title>
+    <title>NeoCraft</title>
     <link rel="stylesheet" href="sunda.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
@@ -18,8 +18,8 @@
                 &#9776; <!-- This is the hamburger icon -->
             </div>
             <div class="nav-links">
-                <a href="index.html#home">Home</a>
-                <a href="index.html#play" onclick="openJoinPopup()">Play</a>
+                <a href="index.html">Home</a>
+                <a onclick="openJoinPopup()">Play</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
                 <a href="https://trakteer.id/Neocraft">Donasi</a>
@@ -56,6 +56,17 @@
             <p>&copy; 2025 NeoCraft. All Rights Reserved.</p>
         </div>
     </footer>
+
+     <!-- Join Now Popup -->
+     <div id="join-popup" class="join-popup">
+        <div class="join-popup-content">
+            <h2>Bergabung ke NeoCraft</h2>
+            <p>Server IP: <strong id="server-ip">mc.neocraft.my.id</strong></p>
+            <p>Port: <strong>30478</strong></p>
+            <button onclick="copyToClipboard()">Copy IP</button>
+            <button onclick="closeJoinPopup()">Tutup</button>
+        </div>
+    </div>
 
     <script src="jawa.js"></script>
 </body>
