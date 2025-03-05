@@ -19,52 +19,35 @@ function toggleMenu() {
     document.querySelector(".nav-links").classList.toggle("active");
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const joinPopup = document.querySelector(".join-popup");
-    const joinBtn = document.querySelector(".join-btn");
-    const closeBtn = document.querySelector(".join-popup button");
+let slideIndex = 0;
+let slides = [];
 
-    joinBtn.addEventListener("click", function () {
-        joinPopup.classList.add("show");
-    });
+function loadImages() {
+    fetch("images.json")
+        .then(response => response.json())
+        .then(data => {
+            slides = data.images;
+            const slideContainer = document.getElementById("slides");
+            slideContainer.innerHTML = slides.map(src => 
+                `<img class="slide fade" src="${src}" alt="Slide">`
+            ).join("");
+            showSlide(slideIndex);
+        })
+        .catch(error => console.error("Error loading images:", error));
+}
 
-    closeBtn.addEventListener("click", function () {
-        joinPopup.classList.remove("show");
-    });
+function changeSlide(n) {
+    showSlide(slideIndex += n);
+}
 
-    // Minecraft Server Checker
-    function checkServerStatus() {
-        const serverIp = "mc.neocraft.my.id"; // Replace with your server IP
-        const apiUrl = `https://mcapi.us/server/status?ip=${serverIp}`;
+function showSlide(n) {
+    let slideElements = document.querySelectorAll(".slide");
     
-        const statusElement = document.getElementById("server-status");
-        const playerCountElement = document.getElementById("player-count");
+    if (n >= slideElements.length) { slideIndex = 0; } 
+    if (n < 0) { slideIndex = slideElements.length - 1; }
     
-        if (!statusElement || !playerCountElement) {
-            console.error("Error: #server-status or #player-count not found in the DOM");
-            return;
-        }
-    
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                if (data.online) {
-                    statusElement.textContent = "Online";
-                    statusElement.style.color = "#3ef770";
-                    playerCountElement.textContent = `Players Online: ${data.players.now}/${data.players.max}`;
-                } else {
-                    statusElement.textContent = "Offline";
-                    statusElement.style.color = "red";
-                    playerCountElement.textContent = "Players Online: 0";
-                }
-            })
-            .catch(error => {
-                console.error("Error fetching server status:", error);
-                statusElement.textContent = "Error fetching data";
-            });
-    }
-    
-    
-    checkServerStatus(); // Run on page load
-    setInterval(checkServerStatus, 30000); // Refresh every 30 seconds
-});
+    slideElements.forEach(slide => slide.style.display = "none");
+    slideElements[slideIndex].style.display = "block";
+}
+
+document.addEventListener("DOMContentLoaded", loadImages);

@@ -12,13 +12,26 @@ html, body {
     overflow: hidden;
 }
 
+ol {
+    margin-left: 5%;
+}
+
+li {
+    font-weight: bolder;
+}
+
+.list-sub {
+    margin-top: 1%;
+    margin-left: 1%;
+}
+
 .background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('background.jpg') center/cover no-repeat;
+    background: url('background.png') center/cover no-repeat;
     z-index: -1;
 }
 
@@ -155,7 +168,7 @@ nav {
 }
 
 /* Home Section */
-#home, #play, #about, #contact {
+#home, #play, #about, #contact, #rules, #gallery {
     background-color: #333;
     display: flex;
     flex-direction: column;
@@ -165,17 +178,19 @@ nav {
     border-radius: 2%;
     border-style: outset;
     border-color: #fab6f8;
+    margin-bottom: 5%;
 }
 
 #home button {
     align-self: center;
 }
 
-.home-overlay, .about-overlay, .contact-overlay {
+.overlay {
     background: rgba(25, 18, 18, 0.6);
     margin: 5%;
     padding: 20px;
     align-self: center;
+    text-align: center;
     border-radius: 10px;
 }
 
@@ -202,7 +217,6 @@ nav {
     text-align: center;
     align-items: center;
     height: fit-content;
-    margin-top: 5%;
 }
 
 #play h1 {
@@ -262,6 +276,8 @@ footer {
     width: 100%;
     border-top: 2px solid #fab6f8;
     position: fixed;
+    font-size: 100%;
+    max-height: 50px;
 }
 
 .footer-container {
@@ -352,6 +368,55 @@ footer {
     text-align: center;
     margin-bottom: 5%;
 }
+
+.slideshow-container {
+    position: relative;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.slide {
+    display: none;
+    width: 100%;
+}
+
+img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Navigation buttons */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* Fade animation */
+.fade {
+    animation: fadeEffect 1s;
+}
+
+@keyframes fadeEffect {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
+
+
 
 /* Mobile Responsive */
 @media (max-width: 600px) {
