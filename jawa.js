@@ -19,6 +19,39 @@ function toggleMenu() {
     document.querySelector(".nav-links").classList.toggle("active");
 }
 
+function checkServerStatus() {
+    const serverIp = "mc.neocraft.my.id"; // Replace with your server IP or domain
+    const apiUrl = `https://mcapi.us/server/status?ip=${serverIp}`;
+    
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            const statusElement = document.getElementById("server-status");
+            const playerCountElement = document.getElementById("player-count");
+            
+            if (data.online) {
+                statusElement.textContent = "Online";
+                statusElement.style.color = "green";
+                playerCountElement.textContent = `Players Online: ${data.players.now}/${data.players.max}`;
+            } else {
+                statusElement.textContent = "Offline";
+                statusElement.style.color = "red";
+                playerCountElement.textContent = "Players Online: 0";
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching server status:", error);
+            document.getElementById("server-status").textContent = "Error fetching data";
+        });
+}
+
+// Run on page load
+checkServerStatus();
+
+// Refresh every 30 seconds
+setInterval(checkServerStatus, 30000);
+
+
 let slideIndex = 0;
 let slides = [];
 
